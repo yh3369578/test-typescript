@@ -24,3 +24,36 @@ body {
 	color: var(--foreground);
 	font-family: Arial, Helvetica, sans-serif;
 }
+
+h1 {
+	font-size: xx-large;
+}
+
+h2 {
+	font-size: large;
+}
+
+.nav {
+	background: white;
+	color: black;
+	margin: 0 0 20px 0;
+	padding: 10px;
+}
+
+.nav-list {
+	display: flex;
+	gap: 16px;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-link {
+	text-decoration: none;
+	color: inherit;
+}
+
+footer {
+	display: flex;
+	justify-content: center;
+	margin-top: 32px;
+}
