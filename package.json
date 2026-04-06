@@ -6,7 +6,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
+		"lint": "eslint src --ext .ts,.tsx",
 		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
 		"upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
 		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
@@ -17,7 +17,8 @@
 		"next": "^16.2.1",
 		"react": "19.1.5",
 		"react-dom": "19.1.5",
-		"react-hook-form": "^7.72.0"
+		"react-hook-form": "^7.72.0",
+		"zustand": "^5.0.12"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3",

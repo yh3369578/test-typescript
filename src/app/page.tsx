@@ -1,35 +1,23 @@
 'use client';
 
-import { useEffect, useState } from "react";
-import { AppConfig } from "@/constants/appConfigs";
+import { useEffect } from "react";
+
+import { useFamilyCountStore } from "@/stores/useFamilyCountStore";
 
 export default function Home() {
-    type CountResponse = { count: number };
-
-    const [counts, setCounts] = useState({ mens: 0, girls: 0 });
+    const mens = useFamilyCountStore((state) => state.mens);
+    const girls = useFamilyCountStore((state) => state.girls);
+    const fetchCounts = useFamilyCountStore((state) => state.fetchCounts);
 
     useEffect(() => {
-        fetchCount();
+        void fetchCounts();
 
         const intervalId = setInterval(() => {
-            fetchCount();
+            void fetchCounts();
         }, 10000);
 
         return () => clearInterval(intervalId);
-    }, []);
-
-    const fetchCount = async () => {
-        const resMens = await fetch(AppConfig.API_URL_MENS);
-        const dataMens = (await resMens.json()) as CountResponse;
-
-        const resGirls = await fetch(AppConfig.API_URL_GIRLS);
-        const dataGirls = (await resGirls.json()) as CountResponse;
-        
-        setCounts({
-            mens: dataMens.count,
-            girls: dataGirls.count,
-        });
-    };
+    }, [fetchCounts]);
     
     return (
         <div>
@@ -38,8 +26,8 @@ export default function Home() {
                 <section>
                     <h2 className="text-center mt-4 font-semibold">構成</h2>
                     <div className="mt-4 flex justify-center gap-4">
-                        <p>男：{counts.mens}</p>
-                        <p>女：{counts.girls}</p>
+                        <p>男：{mens}</p>
+                        <p>女：{girls}</p>
                     </div>
                 </section>
             </main>
